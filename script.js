@@ -8,6 +8,11 @@ const notasInput = document.getElementById("notas");
 const resultDiv = document.getElementById("result");
 const verMediaButton = document.getElementById("verMedia");
 
+// Função para validar notas
+function validarNotas(notas) {
+    return !notas.some(nota => nota > 10 || nota < 0);
+}
+
 // Evento para adicionar um estudante
 form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -18,6 +23,12 @@ form.addEventListener("submit", function (e) {
     // Validações
     if (!nome || notas.some(isNaN)) {
         alert("Por favor, insira um nome válido e notas numéricas separadas por vírgula.");
+        return;
+    }
+
+    // Nova validação para notas maiores que 10
+    if (!validarNotas(notas)) {
+        alert("As notas devem estar entre 0 e 10.");
         return;
     }
 
